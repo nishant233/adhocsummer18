@@ -9,4 +9,4 @@ while 4:
 	data=s.recvfrom(1000)
 	print data[0]
 	r=raw_input('type to reply ')
-	s.sendto(rply,data[1])
+	s.sendto(r,data[1])
