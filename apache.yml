@@ -1,0 +1,17 @@
+---
+ - hosts: all
+   vars:
+    x: "httpd"
+
+   tasks:
+       - name: installing "{{ x }}"
+         yum: name=httpd state=present
+
+       - name: copying index.html file to "{{ x }}" document root location
+         get_url: url=http://192.168.10.134/index.html dest=/var/www/html/index.html
+
+       - name: starting apache server
+         service: name="{{ x }}" state=started enabled=yes
+    
+       - name: reloading firewall
+         shell: iptables -F 
