@@ -1,0 +1,14 @@
+---
+ - hosts: all
+   vars:
+    n: "nfs-utils"
+
+   tasks:
+       - name: installing "{{ n }}"
+         yum: name=nfs-utils state=present
+
+       - name: copy /etc/exports
+         template: src=/root/Desktop/adhocsummer18/check.py dest=/etc/exports owner=root group=root
+
+       - name: restart the nfs-utils
+         service: name="{{ n }}" state=restarted
